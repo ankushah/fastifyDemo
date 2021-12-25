@@ -4,7 +4,7 @@ const {getTransactions, getTransaction, addTransaction, deleteTransaction} = req
 const Transaction = {
     type: 'object',
     properties: {
-        // id: {type: 'integer'},
+        id: {type: 'integer'},
         merchantDetails: {type: 'string'},
         postedAmountInCents: {type: 'integer'}
     }

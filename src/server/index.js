@@ -1,15 +1,19 @@
 const fastify = require('fastify')({logger: true});
-fastify.register(require('./routes'));
+fastify.register(require('fastify-cors'), {
+    preflight: false
+});
 fastify.register(require('fastify-swagger'), {
-    routePrefix: '/',
+    exposeRoute: true,
+    routePrefix: '/docs',
     swagger: {
         info: {
-            title: 'Test swagger',
-            description: 'Testing the Fastify swagger API',
+            title: 'Transaction swagger',
+            description: 'Transaction swagger based on blockchain api',
             version: '0.1.0'
         }
     }
 });
+fastify.register(require('./routes/index'));
 const start = async () => {
     try {
         await fastify.listen(3000);
